@@ -1,38 +1,42 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useBolsa } from "../lib/BolsaContext";
+import { useFavoritos } from "../lib/FavoritosContext";
 
 // Nombre de la marca.
 const NOMBRE_MARCA = "KAPRICHO";
 
 // Categorías del menú desplegable.
 const CATEGORIAS = [
-  { nombre: "Skincare", href: "/#skincare" },
-  { nombre: "Maquillaje", href: "/#maquillaje" },
-  { nombre: "Cabello", href: "/#cabello" },
+  { nombre: "Skincare", href: "/categoria/skincare" },
+  { nombre: "Maquillaje", href: "/categoria/maquillaje" },
+  { nombre: "Cabello", href: "/categoria/cabello" },
   { nombre: "Moda y Accesorios", href: "/moda" },
+  { nombre: "Favoritos", href: "/favoritos" },
+  { nombre: "Mi bolsa", href: "/bolsa" },
 ];
 
 export default function Header() {
   const [busqueda, setBusqueda] = useState("");
   const [menuAbierto, setMenuAbierto] = useState(false);
   const { totalUnidades } = useBolsa();
+  const { total: totalFavoritos } = useFavoritos();
+  const router = useRouter();
 
-  // Provisional: favoritos vendrá del estado real más adelante.
-  const totalFavoritos = 0;
   const totalBolsa = totalUnidades;
 
   function manejarBusqueda(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: conectar con la búsqueda del catálogo.
-    console.log("Buscar:", busqueda);
+    const q = busqueda.trim();
+    if (q) router.push(`/buscar?q=${encodeURIComponent(q)}`);
   }
 
   return (
     <header className="relative w-full border-b border-zinc-100">
-      <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-4">
-        {/* Izquierda: menú hamburguesa + barra de búsqueda */}
+      <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 py-4 sm:gap-4 sm:px-6">
+        {/* Izquierda: menú hamburguesa + barra de búsqueda (la búsqueda solo en ≥sm) */}
         <div className="flex items-center gap-3 justify-self-start">
           {/* Botón menú (tres rayitas) */}
           <button
@@ -55,9 +59,13 @@ export default function Header() {
             </svg>
           </button>
 
-          {/* Barra de búsqueda rectangular negra */}
-          <form onSubmit={manejarBusqueda} className="w-full max-w-xs" role="search">
-            <div className="flex items-center gap-2 bg-zinc-900 px-4 py-2.5">
+          {/* Barra de búsqueda: inline solo en pantallas ≥sm (en móvil va en fila aparte) */}
+          <form
+            onSubmit={manejarBusqueda}
+            className="hidden w-full max-w-xs sm:block"
+            role="search"
+          >
+            <div className="flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2.5">
               <svg
                 className="h-4 w-4 shrink-0 text-zinc-400"
                 viewBox="0 0 24 24"
@@ -91,7 +99,7 @@ export default function Header() {
               K
             </span>
             {/* Nombre de la marca */}
-            <span className="text-xl font-bold tracking-tight text-zinc-900">
+            <span className="text-lg font-bold tracking-tight text-zinc-900 sm:text-xl">
               KAPRICHO
             </span>
           </a>
@@ -156,32 +164,83 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Panel del menú desplegable */}
+      {/* Barra de búsqueda en fila propia (solo móvil, <sm) */}
+      <form
+        onSubmit={manejarBusqueda}
+        className="px-4 pb-3 sm:hidden"
+        role="search"
+      >
+        <div className="flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2.5">
+          <svg
+            className="h-4 w-4 shrink-0 text-zinc-400"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <input
+            type="search"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            placeholder="Buscar productos…"
+            aria-label="Buscar productos"
+            className="w-full bg-transparent text-sm text-white placeholder:text-zinc-400 focus:outline-none"
+          />
+        </div>
+      </form>
+
+      {/* Menú: opciones flotando sobre la pantalla oscurecida (sin recuadro) */}
       {menuAbierto && (
-        <>
-          {/* Capa para cerrar al hacer clic fuera */}
+        <div className="fixed inset-0 z-50">
+          {/* Fondo oscuro que cubre toda la pantalla (clic para cerrar) */}
           <button
             type="button"
             aria-label="Cerrar menú"
             onClick={() => setMenuAbierto(false)}
-            className="fixed inset-0 z-30 cursor-default bg-black/20"
+            className="absolute inset-0 cursor-default bg-black/70"
           />
-          <nav className="absolute left-0 top-full z-40 w-64 border border-zinc-100 bg-white p-2 shadow-lg">
-            <ul>
-              {CATEGORIAS.map((cat) => (
-                <li key={cat.nombre}>
-                  <a
-                    href={cat.href}
-                    onClick={() => setMenuAbierto(false)}
-                    className="block rounded-lg px-4 py-3 text-sm font-medium text-zinc-800 transition-colors hover:bg-zinc-100"
-                  >
-                    {cat.nombre}
-                  </a>
-                </li>
-              ))}
-            </ul>
+
+          {/* Opciones flotando a la izquierda, sin recuadro */}
+          <nav className="absolute left-0 top-0 flex h-full w-72 max-w-[80%] flex-col gap-1 p-6 pt-8">
+            {/* Botón cerrar (X) */}
+            <button
+              type="button"
+              onClick={() => setMenuAbierto(false)}
+              aria-label="Cerrar menú"
+              className="mb-4 flex h-9 w-9 items-center justify-center self-start rounded-full text-white transition-colors hover:bg-white/10"
+            >
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            {CATEGORIAS.map((cat) => (
+              <a
+                key={cat.nombre}
+                href={cat.href}
+                onClick={() => setMenuAbierto(false)}
+                className="rounded-lg px-3 py-2.5 text-base font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {cat.nombre}
+              </a>
+            ))}
           </nav>
-        </>
+        </div>
       )}
     </header>
   );

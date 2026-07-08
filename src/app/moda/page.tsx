@@ -7,7 +7,7 @@ const PASOS = [
     numero: "1",
     titulo: "Compra virtual en España",
     texto:
-      "Busca en las apps oficiales de Zara, Mango, Stradivarius o Pull&Bear España la prenda, el zapato o el accesorio que quieres, en tu talla.",
+      "Busca en las apps oficiales de tiendas españolas como Zara, Mango, Stradivarius, etc., la prenda, el zapato o el accesorio que quieres, en tu talla.",
   },
   {
     numero: "2",
@@ -34,10 +34,10 @@ export default function PaginaModa() {
       <main className="w-full px-6 py-16">
         {/* Encabezado */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-block rounded-full border border-zinc-200 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-zinc-500">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
             Moda · Zapatos · Accesorios
           </span>
-          <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             Ropa, zapatos y accesorios de España, bajo pedido
           </h1>
           <p className="mt-4 text-base leading-7 text-zinc-600">
@@ -76,10 +76,6 @@ export default function PaginaModa() {
           >
             Enviar mi captura por WhatsApp
           </a>
-          <p className="mt-4 max-w-md text-center text-xs leading-5 text-zinc-500">
-            Nota: por normativa de seguridad aérea internacional, no enviamos
-            perfumes ni aerosoles.
-          </p>
         </div>
       </main>
     </div>

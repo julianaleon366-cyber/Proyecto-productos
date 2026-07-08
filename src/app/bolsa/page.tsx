@@ -3,7 +3,9 @@
 import Link from "next/link";
 import BannerInformativo from "../components/BannerInformativo";
 import Header from "../components/Header";
+import FilaProducto from "../components/FilaProducto";
 import { useBolsa } from "../lib/BolsaContext";
+import { buscarProducto } from "../lib/productos";
 import { mensajeCotizarBolsa, urlWhatsApp } from "../lib/whatsapp";
 
 const formateadorCop = new Intl.NumberFormat("es-CO", {
@@ -41,31 +43,31 @@ export default function PaginaBolsa() {
         ) : (
           <>
             {/* Lista de productos */}
-            <ul className="mt-8 divide-y divide-zinc-100">
-              {items.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex items-center justify-between gap-4 py-4"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-zinc-900">
-                      {item.nombre}
-                    </p>
-                    <p className="mt-1 text-sm text-zinc-500">
-                      Cantidad: {item.cantidad} ·{" "}
-                      {formateadorCop.format(item.precioCop * item.cantidad)}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => quitar(item.id)}
-                    className="shrink-0 text-sm font-medium text-zinc-400 transition-colors hover:text-rose-500"
-                  >
-                    Quitar
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-6 divide-y divide-zinc-100">
+              {items.map((item) => {
+                const producto = buscarProducto(item.id);
+                return (
+                  <FilaProducto
+                    key={item.id}
+                    id={item.id}
+                    nombre={item.nombre}
+                    imagen={producto?.imagen ?? ""}
+                    precioCop={item.precioCop * item.cantidad}
+                    piloto={producto?.piloto}
+                    detalle={`Cantidad: ${item.cantidad}`}
+                    acciones={
+                      <button
+                        type="button"
+                        onClick={() => quitar(item.id)}
+                        className="text-sm font-medium text-zinc-400 transition-colors hover:text-rose-500"
+                      >
+                        Quitar
+                      </button>
+                    }
+                  />
+                );
+              })}
+            </div>
 
             {/* Total */}
             <div className="mt-6 flex items-center justify-between border-t border-zinc-200 pt-6">
@@ -88,7 +90,7 @@ export default function PaginaBolsa() {
               rel="noopener noreferrer"
               className="mt-6 flex h-13 w-full items-center justify-center gap-2 rounded-full bg-zinc-900 px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-zinc-700"
             >
-              Confirmar disponibilidad y cotizar pedido por WhatsApp
+              Finalizar pedido por WhatsApp
             </a>
 
             <button

@@ -1,6 +1,6 @@
 // Configuración central de WhatsApp para KAPRICHO.
-// ⚠️ CAMBIAR: número real con código de país, solo dígitos (ej. 57300... o 34600...).
-export const WHATSAPP_NUMERO = "573000000000";
+// Número español (+34).
+export const WHATSAPP_NUMERO = "34624396823";
 
 export type ItemBolsa = {
   id: string;
@@ -35,7 +35,7 @@ export function mensajeCotizarBolsa(items: ItemBolsa[]) {
   const total = items.reduce((s, i) => s + i.precioCop * i.cantidad, 0);
 
   return [
-    "¡Hola KAPRICHO! Quiero confirmar disponibilidad y cotizar este pedido:",
+    "¡Hola KAPRICHO! Me interesa este pedido y quiero confirmar disponibilidad:",
     "",
     ...lineas,
     "",
@@ -50,5 +50,5 @@ export function mensajePedidoEspecial() {
 
 // Mensaje para cotizar una prenda/accesorio bajo pedido (moda, zapatos, accesorios).
 export function mensajeModaBajoPedido() {
-  return "¡Hola KAPRICHO! Quiero cotizar una prenda/accesorio de España. Aquí va la captura o el link, la talla y el color:";
+  return "¡Hola KAPRICHO! Me interesa una prenda/accesorio de España. Aquí va la captura o el link, la talla y el color:";
 }

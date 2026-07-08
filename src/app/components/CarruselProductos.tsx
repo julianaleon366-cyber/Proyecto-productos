@@ -103,7 +103,7 @@ export default function CarruselProductos({
           return (
           <div
             key={i}
-            className="relative flex aspect-[1456/1080] w-full shrink-0 items-center overflow-hidden bg-zinc-100 p-8 sm:p-12"
+            className="relative flex aspect-[1456/1080] w-full shrink-0 items-center overflow-hidden bg-zinc-100 p-5 sm:p-12"
           >
             {producto.esMarcador ? (
               /* Diapositiva de moda sin imagen aún: fondo con marcador */
@@ -140,17 +140,26 @@ export default function CarruselProductos({
               </>
             )}
 
+            {/* Degradado claro por la izquierda para que el texto sea legible
+                sobre cualquier imagen (más fuerte en móvil, donde el bloque es estrecho) */}
+            {!producto.esMarcador && (
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent sm:via-white/60 sm:to-transparent"
+                aria-hidden="true"
+              />
+            )}
+
             {/* Texto encima, a la izquierda */}
-            <div className="relative flex max-w-sm flex-col items-start">
-              <h2 className="text-2xl font-semibold leading-snug tracking-tight text-zinc-900 sm:text-3xl">
+            <div className="relative flex max-w-[70%] flex-col items-start sm:max-w-sm">
+              <h2 className="text-xl font-semibold leading-snug tracking-tight text-zinc-900 sm:text-3xl">
                 {producto.nombre}
               </h2>
-              <p className="mt-4 text-sm leading-6 text-zinc-700">
+              <p className="mt-3 text-xs leading-5 text-zinc-700 sm:mt-4 sm:text-sm sm:leading-6">
                 {producto.descripcion}
               </p>
               <a
                 href={producto.href}
-                className="mt-8 flex h-12 items-center justify-center rounded-full bg-zinc-900 px-8 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-zinc-700"
+                className="mt-4 flex h-10 items-center justify-center rounded-full bg-zinc-900 px-5 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-zinc-700 sm:mt-8 sm:h-12 sm:px-8 sm:text-sm"
               >
                 {producto.textoBoton ?? "Comprar ahora"}
               </a>
