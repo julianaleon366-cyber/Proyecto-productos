@@ -165,6 +165,38 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
       },
     ],
   },
+  {
+    id: "suplementos",
+    titulo: "Suplementos",
+    href: "#suplementos",
+    // ⚠️ Productos PILOTO: sin imágenes ni datos reales todavía.
+    productos: [
+      {
+        id: "creatine-monohydrate-creapure",
+        nombre: "Creatine Monohydrate (Creapure®) en polvo",
+        imagen: "/imagenes/creatine-creapure.jpg",
+        precioCop: 129900,
+        descripcion:
+          "La creatina es uno de los suplementos más estudiados y utilizados por deportistas: al aumentar su concentración en el músculo, ayuda a mejorar el rendimiento físico en series sucesivas de ejercicios breves y de alta intensidad. Por eso es ideal para el entrenamiento de fuerza y el deporte de alto rendimiento.\n\nEstá elaborado con creatina monohidrato Creapure®, una de las materias primas de mayor calidad del mercado, reconocida por su pureza gracias a una cuidadosa selección de ingredientes, procesos tecnológicos avanzados bajo condiciones GMP y estrictos métodos de análisis.\n\nModo de uso recomendado: una ingesta diaria de 3 g de creatina mejora el rendimiento físico en series sucesivas de ejercicios breves de alta intensidad.",
+      },
+      {
+        id: "colnatur-complex-neutro",
+        nombre: "Colnatur Complex Sabor Neutro 324g",
+        imagen: "/imagenes/colnatur-complex.jpg",
+        precioCop: 99900,
+        descripcion:
+          "Colnatur Complex es un colágeno natural asimilable puro con vitamina C, magnesio, cobre y ácido hialurónico, indicado para el cuidado de las articulaciones, los huesos y los músculos.\n\nComplemento alimenticio en polvo. 324 g.\n\nSabor muy neutro.",
+      },
+      {
+        id: "sup-piloto-3",
+        nombre: "Suplemento 3",
+        imagen: "",
+        precioCop: 59900,
+        descripcion: "Descripción piloto del suplemento.",
+        piloto: true,
+      },
+    ],
+  },
 ];
 
 // Devuelve una categoría por su id.
@@ -218,18 +250,23 @@ function distancia(a: string, b: string): number {
 
 // ¿La palabra buscada coincide (exacta, contenida o "parecida") con alguna del texto?
 function palabraCoincide(buscada: string, palabrasTexto: string[]): boolean {
-  // Umbral tolerante: permite más errores cuanto más larga es la palabra.
-  const umbral = buscada.length <= 4 ? 1 : buscada.length <= 7 ? 2 : 3;
   return palabrasTexto.some((palabra) => {
-    // Coincidencia directa (fragmento contenido): "cica" en "cicaplast".
-    if (palabra.includes(buscada) || buscada.includes(palabra)) return true;
-    // Coincidencia aproximada solo entre palabras de longitud parecida
-    // (evita que "tonico" cace "antiox" o palabras cortas al azar).
+    // Coincidencia directa: lo que el cliente escribe debe estar contenido en
+    // la palabra del producto ("cica" → "cicaplast"). Solo si lo buscado tiene
+    // al menos 3 letras, para no cazar con cualquier trocito ("a", "de"...).
+    // OJO: solo en este sentido. Comprobar si la palabra del producto está
+    // contenida en lo buscado haría que "hola" cazara "la" (de "La Roche").
+    if (buscada.length >= 3 && palabra.includes(buscada)) return true;
+
+    // Coincidencia aproximada (tolerante a erratas) SOLO para palabras largas
+    // (≥6 letras): así "cicaplas" encuentra "cicaplast", pero palabras cortas
+    // y comunes como "hola" no se parecen a nada por accidente.
+    if (buscada.length < 6) return false;
+    // Permite 1 errata; 2 solo en palabras muy largas (≥9 letras).
+    const umbral = buscada.length >= 9 ? 2 : 1;
+    // Solo compara palabras de longitud parecida (evita coincidencias al azar).
     if (Math.abs(palabra.length - buscada.length) > umbral) return false;
-    if (distancia(buscada, palabra) <= umbral) return true;
-    // También compara contra el inicio de la palabra (typos al final).
-    const prefijo = palabra.slice(0, buscada.length);
-    return distancia(buscada, prefijo) <= umbral;
+    return distancia(buscada, palabra) <= umbral;
   });
 }
 

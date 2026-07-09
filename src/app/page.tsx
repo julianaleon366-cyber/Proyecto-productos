@@ -48,6 +48,15 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     textoBoton: "Ver cabello",
   },
   {
+    // Suplementos
+    nombre: "Suplementos y nutrición deportiva",
+    descripcion:
+      "Creatina, colágeno y complementos de marcas europeas para tu rendimiento y bienestar.",
+    imagen: "/imagenes/1_suplemento.png",
+    href: "#suplementos",
+    textoBoton: "Ver suplementos",
+  },
+  {
     // Skincare
     nombre: "Serums, cremas y protección solar",
     descripcion:
@@ -82,6 +91,15 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     imagen: "/imagenes/2_cabello.png",
     href: "#cabello",
     textoBoton: "Ver cabello",
+  },
+  {
+    // Suplementos
+    nombre: "Creatina, colágeno y vitaminas",
+    descripcion:
+      "Complementos para articulaciones, energía y recuperación, con ingredientes de máxima calidad.",
+    imagen: "/imagenes/2_suplemento.png",
+    href: "#suplementos",
+    textoBoton: "Ver suplementos",
   },
 ];
 
