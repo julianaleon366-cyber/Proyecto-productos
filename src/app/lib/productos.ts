@@ -78,23 +78,6 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
         descripcion:
           "El C-vit Serum Liposomado de Sesderma es un sérum formulado con vitamina C de máxima actividad antioxidante, hidratante, antiarrugas e iluminadora, que devuelve a tu piel su vitalidad y luz natural.\n\nCombate el fotoenvejecimiento y aporta una inyección de luz a la piel. Su acción antioxidante ayuda a disminuir las arrugas y a aumentar la firmeza. Además, su exclusivo Antiox Booster System favorece la síntesis de colágeno y un tono más uniforme, devolviéndole su luminosidad natural.\n\nPrincipales beneficios:\n\n• Ilumina y revitaliza la piel.\n• Unifica el tono y ayuda a prevenir el fotoenvejecimiento.\n• Combate los signos de fatiga y reduce la aparición de arrugas.\n• Incrementa la firmeza y la elasticidad.\n• Acción antioxidante frente a los radicales libres.\n• Hidratación diaria.\n\nSus principios activos van encapsulados en liposomas para lograr una mayor penetración y eficacia.",
       },
-      {
-        // ⚠️ PILOTO para previsualizar el "Ver más".
-        id: "sk-piloto-1",
-        nombre: "Producto skincare 5",
-        imagen: "",
-        precioCop: 64900,
-        descripcion: "Descripción piloto del producto de skincare.",
-        piloto: true,
-      },
-      {
-        id: "sk-piloto-2",
-        nombre: "Producto skincare 6",
-        imagen: "",
-        precioCop: 74900,
-        descripcion: "Descripción piloto del producto de skincare.",
-        piloto: true,
-      },
     ],
   },
   {
@@ -156,38 +139,6 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
         precioCop: 54900,
         descripcion:
           "Prebase fijadora que mantiene el maquillaje intacto hasta 24 horas. Actúa como un adhesivo, pero sin sensación pegajosa: desde la base hasta el colorete, todo queda fijado con un acabado uniforme y duradero.\n\nAdemás de prolongar la duración del maquillaje, hidrata la piel durante todo el día gracias al ácido poliglutámico y el jarabe de arce. Su textura es ligera y no comedogénica, con un efecto de enfoque suave que no obstruye los poros.\n\nCon esta prebase, tu look se mantiene impecable por más tiempo.",
-      },
-      {
-        id: "maq-piloto-3",
-        nombre: "Producto de maquillaje 3",
-        imagen: "",
-        precioCop: 45900,
-        descripcion: "Descripción piloto del producto de maquillaje.",
-        piloto: true,
-      },
-      {
-        id: "maq-piloto-4",
-        nombre: "Producto de maquillaje 4",
-        imagen: "",
-        precioCop: 89900,
-        descripcion: "Descripción piloto del producto de maquillaje.",
-        piloto: true,
-      },
-      {
-        id: "maq-piloto-5",
-        nombre: "Producto de maquillaje 5",
-        imagen: "",
-        precioCop: 55900,
-        descripcion: "Descripción piloto del producto de maquillaje.",
-        piloto: true,
-      },
-      {
-        id: "maq-piloto-6",
-        nombre: "Producto de maquillaje 6",
-        imagen: "",
-        precioCop: 42900,
-        descripcion: "Descripción piloto del producto de maquillaje.",
-        piloto: true,
       },
     ],
   },

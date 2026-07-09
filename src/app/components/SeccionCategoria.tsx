@@ -12,7 +12,9 @@ export default function SeccionCategoria({
   categoria: Categoria;
 }) {
   const productos = categoria.productos;
-  const hayMas = productos.length > VISIBLES_MOVIL;
+  // "Ver más" solo si hay más productos de los que caben en la home (4 en
+  // ordenador). Con 4 o menos, se muestran todos y no hace falta el enlace.
+  const hayMas = productos.length > VISIBLES_ORDENADOR;
 
   return (
     <section id={categoria.id} className="mb-16 last:mb-0">
@@ -46,12 +48,16 @@ export default function SeccionCategoria({
       {/* Cuadrícula: en móvil se ven 2, en ordenador 4 (el resto oculto) */}
       <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
         {productos.map((producto, i) => {
-          const claseOculto =
-            i >= VISIBLES_ORDENADOR
-              ? "hidden"
-              : i >= VISIBLES_MOVIL
-              ? "hidden sm:block"
-              : "";
+          // Si hay "Ver más", en la home limitamos lo visible (2 móvil / 4 ordenador)
+          // y el resto se ve al entrar a la categoría. Si no hay "Ver más", se
+          // muestran todos (no ocultamos nada).
+          const claseOculto = !hayMas
+            ? ""
+            : i >= VISIBLES_ORDENADOR
+            ? "hidden"
+            : i >= VISIBLES_MOVIL
+            ? "hidden sm:block"
+            : "";
           return (
             <div key={producto.id} className={claseOculto}>
               <TarjetaProducto producto={producto} />
