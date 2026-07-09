@@ -94,10 +94,10 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Suplementos
-    nombre: "Creatina, colágeno y vitaminas",
+    nombre: "Vitaminas y bienestar articular",
     descripcion:
-      "Complementos para articulaciones, energía y recuperación, con ingredientes de máxima calidad.",
-    imagen: "/imagenes/2_suplemento.png",
+      "Magnesio, vitamina C, colágeno y más: complementos para tus articulaciones, energía y defensas.",
+    imagen: "/imagenes/3_suplemento.png",
     href: "#suplementos",
     textoBoton: "Ver suplementos",
   },

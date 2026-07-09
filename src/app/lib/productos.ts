@@ -188,12 +188,28 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
           "Colnatur Complex es un colágeno natural asimilable puro con vitamina C, magnesio, cobre y ácido hialurónico, indicado para el cuidado de las articulaciones, los huesos y los músculos.\n\nComplemento alimenticio en polvo. 324 g.\n\nSabor muy neutro.",
       },
       {
-        id: "sup-piloto-3",
-        nombre: "Suplemento 3",
-        imagen: "",
-        precioCop: 59900,
-        descripcion: "Descripción piloto del suplemento.",
-        piloto: true,
+        id: "solaray-magnesium-bisglycinate",
+        nombre: "Solaray Magnesium Bisglycinate 120 Cápsulas",
+        imagen: "/imagenes/solaray-magnesium.jpg",
+        precioCop: 89900,
+        descripcion:
+          "Magnesio en forma de bisglicinato, una versión quelada que el cuerpo absorbe mejor que otras sales de magnesio. Un mineral esencial para el bienestar diario.\n\nBeneficios principales:\n\n• Salud de huesos y músculos: ayuda a mantener niveles normales de magnesio, favoreciendo la densidad ósea y la función muscular.\n\n• Relajación muscular: contribuye a aliviar la tensión y los espasmos, y ayuda a descansar mejor.\n\n• Equilibrio psicológico: apoya el funcionamiento normal del sistema nervioso, ayudando a manejar el estrés y el estado de ánimo.\n\nCada cápsula aporta bisglicinato de magnesio junto con Bioperine® (extracto de pimienta negra) que mejora su absorción. Complemento alimenticio. 120 cápsulas.",
+      },
+      {
+        id: "kal-glucosamine-chondroitin-msm",
+        nombre: "Kal Glucosamine Chondroitin MSM 90 Comprimidos",
+        imagen: "/imagenes/kal-glucosamine.jpg",
+        precioCop: 109900,
+        descripcion:
+          "Complemento a base de glucosamina y condroitina que favorece la función y la movilidad de las articulaciones. Ideal a partir de los 45 años, para deportistas o personas con molestias articulares.\n\nSu fórmula combina:\n\n• Glucosamina: ayuda a aliviar el dolor y a cuidar el cartílago.\n\n• Condroitina: componente básico del cartílago; retrasa su desgaste y, junto a la glucosamina, mejora la movilidad.\n\n• MSM (metilsulfonilmetano): contribuye al bienestar articular.\n\n• Vitamina C y calcio: favorecen la absorción de los nutrientes y el cuidado de los huesos.\n\nComplemento alimenticio. 90 comprimidos. Modo de uso: 3 comprimidos al día con la comida.",
+      },
+      {
+        id: "solgar-ester-c-plus-1000",
+        nombre: "Solgar Ester-C Plus 1000mg 60 Comprimidos",
+        imagen: "/imagenes/solgar-ester-c.avif",
+        precioCop: 119900,
+        descripcion:
+          "Vitamina C en su forma Ester-C®, suave con el estómago y de fácil absorción, para reforzar tus defensas y cuidar tu piel desde dentro.\n\nBeneficios principales:\n\n• Fortalece el sistema inmunitario.\n\n• Favorece la formación de colágeno para una piel más sana.\n\n• Protege las células del estrés oxidativo y mejora la absorción de hierro.\n\nCada comprimido aporta 1000 mg de vitamina C, junto con acerola, bioflavonoides cítricos, rutina y escaramujo, que potencian su efecto. Complemento alimenticio. 60 comprimidos. Modo de uso: 1 comprimido al día, preferiblemente con una comida.",
       },
     ],
   },

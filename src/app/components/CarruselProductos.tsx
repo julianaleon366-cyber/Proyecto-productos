@@ -16,7 +16,7 @@ export type ProductoDestacado = {
 
 const INTERVALO_MS = 5000;
 const TRANSICION_MS = 700;
-// Distancia mínima (px) de arrastre con el dedo para contar como "deslizar".
+// Distancia mínima (px) de arrastre con el dedo/ratón para contar como "deslizar".
 const UMBRAL_SWIPE = 50;
 
 export default function CarruselProductos({
@@ -34,17 +34,10 @@ export default function CarruselProductos({
   const [conTransicion, setConTransicion] = useState(true);
   // Guarda qué imágenes (por su ruta) ya terminaron de cargar.
   const [cargadas, setCargadas] = useState<Record<string, boolean>>({});
-  // Mientras el cliente interactúa (ratón encima, dedo o flecha) el auto se pausa.
-  const [pausado, setPausado] = useState(false);
 
   // Lista con clones a ambos lados: [últimoClon, ...reales, primerClon].
   const diapositivas =
-    total > 1
-      ? [productos[total - 1], ...productos, productos[0]]
-      : productos;
-
-  // El índice "real" (0..total-1) que se muestra, para pintar los puntitos.
-  const indiceReal = total > 1 ? (indice - 1 + total) % total : 0;
+    total > 1 ? [productos[total - 1], ...productos, productos[0]] : productos;
 
   // Tras aterrizar en un clon, salta sin animación a la diapositiva real gemela.
   function normalizarSiEsClon(i: number) {
@@ -82,15 +75,9 @@ export default function CarruselProductos({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [total]);
 
-  // Salta directamente a una diapositiva concreta (desde los puntitos).
-  const irA = useCallback((real: number) => {
-    setConTransicion(true);
-    setIndice(real + 1); // +1 por el clon inicial
-  }, []);
-
-  // Paso automático: corre salvo que esté pausado o la pestaña esté oculta.
+  // Paso automático: corre siempre (salvo que la pestaña esté oculta).
   useEffect(() => {
-    if (total <= 1 || pausado) return;
+    if (total <= 1) return;
 
     let intervalo: ReturnType<typeof setInterval> | undefined;
     const iniciar = () => {
@@ -102,11 +89,8 @@ export default function CarruselProductos({
     };
 
     function alCambiarVisibilidad() {
-      if (document.hidden) detener();
-      else {
-        detener();
-        iniciar();
-      }
+      detener();
+      if (!document.hidden) iniciar();
     }
 
     iniciar();
@@ -115,31 +99,27 @@ export default function CarruselProductos({
       detener();
       document.removeEventListener("visibilitychange", alCambiarVisibilidad);
     };
-  }, [total, pausado, avanzar]);
+  }, [total, avanzar]);
 
-  // --- Deslizar con el dedo (swipe) en móvil ---
+  // --- Deslizar para navegar (funciona con dedo en móvil y ratón en escritorio) ---
   const inicioX = useRef<number | null>(null);
-  function alTocarInicio(e: React.TouchEvent) {
-    inicioX.current = e.touches[0].clientX;
-    setPausado(true);
-  }
-  function alTocarFin(e: React.TouchEvent) {
-    if (inicioX.current !== null) {
-      const delta = e.changedTouches[0].clientX - inicioX.current;
-      if (delta > UMBRAL_SWIPE) retroceder();
-      else if (delta < -UMBRAL_SWIPE) avanzar();
-    }
+
+  function alDeslizarFin(finX: number) {
+    if (inicioX.current === null) return;
+    const delta = finX - inicioX.current;
+    if (delta > UMBRAL_SWIPE) retroceder();
+    else if (delta < -UMBRAL_SWIPE) avanzar();
     inicioX.current = null;
-    setPausado(false);
   }
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl bg-zinc-100"
-      onMouseEnter={() => setPausado(true)}
-      onMouseLeave={() => setPausado(false)}
-      onTouchStart={alTocarInicio}
-      onTouchEnd={alTocarFin}
+      className="relative cursor-grab overflow-hidden rounded-2xl bg-zinc-100 active:cursor-grabbing"
+      onTouchStart={(e) => (inicioX.current = e.touches[0].clientX)}
+      onTouchEnd={(e) => alDeslizarFin(e.changedTouches[0].clientX)}
+      onMouseDown={(e) => (inicioX.current = e.clientX)}
+      onMouseUp={(e) => alDeslizarFin(e.clientX)}
+      onMouseLeave={() => (inicioX.current = null)}
     >
       <div
         className="flex"
@@ -173,6 +153,8 @@ export default function CarruselProductos({
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     priority={i <= 1}
+                    // Evita que el navegador "arrastre" la imagen al deslizar con el ratón.
+                    draggable={false}
                     onLoad={() =>
                       setCargadas((prev) => ({
                         ...prev,
@@ -212,6 +194,8 @@ export default function CarruselProductos({
                 </p>
                 <a
                   href={producto.href}
+                  // No dispares el enlace si el usuario estaba deslizando.
+                  draggable={false}
                   className="mt-4 flex h-10 items-center justify-center rounded-full bg-zinc-900 px-5 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-zinc-700 sm:mt-8 sm:h-12 sm:px-8 sm:text-sm"
                 >
                   {producto.textoBoton ?? "Comprar ahora"}
@@ -221,71 +205,6 @@ export default function CarruselProductos({
           );
         })}
       </div>
-
-      {/* Controles (solo si hay más de una diapositiva) */}
-      {total > 1 && (
-        <>
-          {/* Flecha anterior */}
-          <button
-            type="button"
-            onClick={retroceder}
-            aria-label="Anterior"
-            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-zinc-900 opacity-0 shadow-sm backdrop-blur transition-opacity hover:bg-white focus:opacity-100 focus:outline-none group-hover:opacity-100 sm:left-4 sm:h-11 sm:w-11"
-          >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-
-          {/* Flecha siguiente */}
-          <button
-            type="button"
-            onClick={avanzar}
-            aria-label="Siguiente"
-            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/70 text-zinc-900 opacity-0 shadow-sm backdrop-blur transition-opacity hover:bg-white focus:opacity-100 focus:outline-none group-hover:opacity-100 sm:right-4 sm:h-11 sm:w-11"
-          >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-
-          {/* Puntitos indicadores */}
-          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 sm:bottom-4">
-            {productos.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => irA(i)}
-                aria-label={`Ir a la diapositiva ${i + 1}`}
-                aria-current={i === indiceReal}
-                className={`h-2 rounded-full transition-all ${
-                  i === indiceReal
-                    ? "w-6 bg-zinc-900"
-                    : "w-2 bg-zinc-900/40 hover:bg-zinc-900/60"
-                }`}
-              />
-            ))}
-          </div>
-        </>
-      )}
     </div>
   );
 }
