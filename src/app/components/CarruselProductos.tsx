@@ -139,7 +139,7 @@ export default function CarruselProductos({
             >
               {producto.esMarcador ? (
                 /* Diapositiva de moda sin imagen aún: fondo con marcador */
-                <div className="absolute inset-0 flex items-center justify-end bg-gradient-to-br from-zinc-200 to-zinc-300">
+                <div className="absolute inset-0 flex items-center justify-end bg-gradient-to-br from-[#e0e5ee] to-[#cdd4e0]">
                   <span className="mr-10 hidden text-sm text-zinc-500 sm:block">
                     Imagen de moda
                   </span>

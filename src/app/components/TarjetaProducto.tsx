@@ -68,7 +68,7 @@ export default function TarjetaProducto({ producto }: { producto: Producto }) {
         className="relative block aspect-square w-full"
       >
         {producto.piloto || !producto.imagen ? (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-700 to-zinc-800 text-xs text-zinc-400">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#3f3f5c] to-[#2c2c40] text-xs text-white/50">
             Imagen del producto
           </div>
         ) : (

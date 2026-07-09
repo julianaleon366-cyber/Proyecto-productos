@@ -211,6 +211,14 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
         descripcion:
           "Vitamina C en su forma Ester-C®, suave con el estómago y de fácil absorción, para reforzar tus defensas y cuidar tu piel desde dentro.\n\nBeneficios principales:\n\n• Fortalece el sistema inmunitario.\n\n• Favorece la formación de colágeno para una piel más sana.\n\n• Protege las células del estrés oxidativo y mejora la absorción de hierro.\n\nCada comprimido aporta 1000 mg de vitamina C, junto con acerola, bioflavonoides cítricos, rutina y escaramujo, que potencian su efecto. Complemento alimenticio. 60 comprimidos. Modo de uso: 1 comprimido al día, preferiblemente con una comida.",
       },
+      {
+        id: "aceite-krill-nko",
+        nombre: "Aceite de Krill NKO 80 Perlas",
+        imagen: "/imagenes/aceite-krill.webp",
+        precioCop: 139900,
+        descripcion:
+          "Aceite de krill NKO de alta calidad y pureza, rico en omega-3 (EPA y DHA) de cadena larga. Sus fosfolípidos naturales mejoran la absorción y aprovechamiento del omega-3.\n\nCaracterísticas:\n\n• Gran aporte de EPA y DHA.\n\n• Fácil digestión y buena absorción.\n\n• Sin olor ni regusto.\n\nIndicado para adultos y mayores de 12 años. Contiene gelatina de pescado; puede contener trazas de crustáceos. Complemento alimenticio. 80 perlas.\n\nModo de uso: mantenimiento, 1-2 cápsulas al día con las comidas; refuerzo, 3-5 al día.",
+      },
     ],
   },
 ];

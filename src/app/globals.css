@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta de la marca:
+     - "blanco" de la web  -> azul muy claro
+     - "negro" de la web   -> azul oscuro */
+  --background: #eef1f5;
+  --foreground: #34344c;
 }
 
 @theme inline {
@@ -10,6 +13,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Reasignamos los colores de Tailwind usados en toda la web para aplicar la
+   paleta de marca sin tocar cada clase.  Lo que en el código es "white" pasa a
+   azul claro, y "zinc-900" (el negro de fondos y textos) pasa a azul oscuro. */
+@theme {
+  --color-white: #eef1f5;
+  --color-zinc-900: #34344c;
 }
 
 html {

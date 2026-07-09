@@ -72,7 +72,7 @@ export default function DetalleProducto({ producto }: { producto: Producto }) {
         {/* Imagen o marcador piloto */}
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
           {!tieneImagen ? (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-200 to-zinc-300 text-sm text-zinc-500">
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#e0e5ee] to-[#cdd4e0] text-sm text-[#34344c]/60">
               Imagen del producto
             </div>
           ) : (
