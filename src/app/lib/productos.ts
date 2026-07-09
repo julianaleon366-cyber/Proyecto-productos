@@ -143,9 +143,9 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
     ],
   },
   {
-    id: "cabello",
-    titulo: "Cabello",
-    href: "#cabello",
+    id: "capilar",
+    titulo: "Capilar",
+    href: "#capilar",
     productos: [
       {
         id: "olaplex-n7-bonding-oil",

@@ -12,7 +12,7 @@ const NOMBRE_MARCA = "KAPRICHO";
 const CATEGORIAS = [
   { nombre: "Skincare", href: "/categoria/skincare" },
   { nombre: "Maquillaje", href: "/categoria/maquillaje" },
-  { nombre: "Cabello", href: "/categoria/cabello" },
+  { nombre: "Capilar", href: "/categoria/capilar" },
   { nombre: "Suplementos", href: "/categoria/suplementos" },
   { nombre: "Moda y Accesorios", href: "/moda" },
   { nombre: "Favoritos", href: "/favoritos" },

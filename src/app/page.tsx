@@ -44,8 +44,8 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     descripcion:
       "Champús, mascarillas y tratamientos para nutrir y reparar tu cabello.",
     imagen: "/imagenes/1_cabello.png",
-    href: "#cabello",
-    textoBoton: "Ver cabello",
+    href: "#capilar",
+    textoBoton: "Ver capilar",
   },
   {
     // Suplementos
@@ -89,8 +89,8 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     descripcion:
       "Productos específicos para puntas, frizz y brillo, de marcas de farmacia europea.",
     imagen: "/imagenes/2_cabello.png",
-    href: "#cabello",
-    textoBoton: "Ver cabello",
+    href: "#capilar",
+    textoBoton: "Ver capilar",
   },
   {
     // Suplementos
