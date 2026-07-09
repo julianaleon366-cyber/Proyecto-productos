@@ -32,12 +32,12 @@ export default function DetalleProducto({ producto }: { producto: Producto }) {
   const variantes = producto.variantes ?? [];
   const hayVariantes = variantes.length > 0;
 
-  // Galería de fotos del tono actual (o solo su imagen si no tiene galería).
+  // Galería de fotos: del tono actual (si hay variantes), o del propio producto.
   const galeria = hayVariantes
     ? variantes[tono].imagenes ?? [variantes[tono].imagen]
-    : [];
-  // Imagen a mostrar: la foto actual de la galería del tono, o la imagen normal.
-  const imagenActual = hayVariantes ? galeria[foto] : producto.imagen;
+    : producto.imagenes ?? (producto.imagen ? [producto.imagen] : []);
+  // Imagen a mostrar: la foto actual de la galería.
+  const imagenActual = galeria[foto] ?? producto.imagen;
 
   // Nombre a mostrar: base + sufijo del tono elegido (si lo tiene).
   const nombreActual = hayVariantes && variantes[tono].sufijoNombre

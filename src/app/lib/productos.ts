@@ -24,6 +24,9 @@ export type Producto = {
   descripcion?: string;
   // Si es "piloto": sin imagen ni datos reales todavía → tarjeta con fondo marcador.
   piloto?: boolean;
+  // Galería de fotos del producto (sin tonos). Si existe, el detalle muestra
+  // flechas para pasar entre ellas. La primera suele coincidir con `imagen`.
+  imagenes?: string[];
   // Tonos/colores disponibles. Si existe, el detalle muestra círculos de color
   // que cambian la imagen. La primera variante es la que se ve por defecto.
   variantes?: Variante[];
@@ -146,12 +149,13 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
         ],
       },
       {
-        id: "maq-piloto-2b",
-        nombre: "Producto de maquillaje 2",
-        imagen: "",
-        precioCop: 39900,
-        descripcion: "Descripción piloto del producto de maquillaje.",
-        piloto: true,
+        id: "nyx-face-glue-primer",
+        nombre: "NYX Professional Makeup - The Face Glue Primer",
+        imagen: "/imagenes/nyx-glue-1.webp",
+        imagenes: ["/imagenes/nyx-glue-1.webp", "/imagenes/nyx-glue-2.avif"],
+        precioCop: 54900,
+        descripcion:
+          "Prebase fijadora que mantiene el maquillaje intacto hasta 24 horas. Actúa como un adhesivo, pero sin sensación pegajosa: desde la base hasta el colorete, todo queda fijado con un acabado uniforme y duradero.\n\nAdemás de prolongar la duración del maquillaje, hidrata la piel durante todo el día gracias al ácido poliglutámico y el jarabe de arce. Su textura es ligera y no comedogénica, con un efecto de enfoque suave que no obstruye los poros.\n\nCon esta prebase, tu look se mantiene impecable por más tiempo.",
       },
       {
         id: "maq-piloto-3",
