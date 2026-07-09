@@ -1,3 +1,19 @@
+// Un tono/variante de color de un producto (ej. los colores de un colorete).
+export type Variante = {
+  // Nombre del tono (se muestra al seleccionar). Opcional.
+  nombre?: string;
+  // Color del círculo selector (código hex, ej. "#FF7F6E").
+  color: string;
+  // Imagen principal del tono. Si el tono tiene galería, es la primera.
+  imagen: string;
+  // Galería de imágenes del tono (se pasan con flechas). Opcional.
+  // Si se define, la primera suele coincidir con `imagen`.
+  imagenes?: string[];
+  // Sufijo de nombre que se añade al nombre base al elegir este tono.
+  // Ej: base "Hydra Lipgloss Kiko Milano" + sufijo "17 Pearly Mauve".
+  sufijoNombre?: string;
+};
+
 export type Producto = {
   id: string;
   nombre: string;
@@ -8,6 +24,9 @@ export type Producto = {
   descripcion?: string;
   // Si es "piloto": sin imagen ni datos reales todavía → tarjeta con fondo marcador.
   piloto?: boolean;
+  // Tonos/colores disponibles. Si existe, el detalle muestra círculos de color
+  // que cambian la imagen. La primera variante es la que se ve por defecto.
+  variantes?: Variante[];
 };
 
 export type Categoria = {
@@ -82,16 +101,52 @@ export const CATEGORIAS_CATALOGO: Categoria[] = [
     // ⚠️ Productos PILOTO: sin imágenes ni datos reales todavía.
     productos: [
       {
-        id: "maq-piloto-1",
-        nombre: "Producto de maquillaje 1",
-        imagen: "",
+        id: "cooling-water-jelly-tint",
+        nombre: "Cooling Water Jelly Tint - Colorete para labios y mejillas",
+        imagen: "/imagenes/jelly-tint-1.avif",
         precioCop: 69900,
         descripcion:
-          "Descripción piloto del producto de maquillaje. Aquí irá la descripción real cuando tengamos el producto.",
-        piloto: true,
+          "Stick con color para labios y mejillas de textura gel hidratante, que se desliza sobre la piel y aporta un toque de color translúcido y ajustable que dura todo el día.\n\nFácil de aplicar, se transforma en un acabado radiante tipo acuarela y aguanta sin difuminarse. Su fórmula, enriquecida con colágeno vegano, aloe vera y agua de mar, deja una sensación refrescante y una piel tersa y de aspecto saludable.\n\nVegano: elaborado con ingredientes de origen natural.\n\nDisponible en varios tonos: elige tu color favorito en los círculos de arriba.",
+        variantes: [
+          { sufijoNombre: "Coral", color: "#FF7F6E", imagen: "/imagenes/jelly-tint-1.avif" },
+          { sufijoNombre: "Rosa fuerte", color: "#F94C8D", imagen: "/imagenes/jelly-tint-2.avif" },
+          { sufijoNombre: "Rosa", color: "#D9569F", imagen: "/imagenes/jelly-tint-3.avif" },
+          { sufijoNombre: "Fucsia", color: "#B93B9E", imagen: "/imagenes/jelly-tint-4.avif" },
+          { sufijoNombre: "Naranja", color: "#DC5A1E", imagen: "/imagenes/jelly-tint-5.avif" },
+          { sufijoNombre: "Rojo", color: "#D40E0E", imagen: "/imagenes/jelly-tint-6.avif" },
+        ],
       },
       {
-        id: "maq-piloto-2",
+        id: "hydra-lipgloss-kiko-milano",
+        nombre: "Brillo De Labios Emoliente Efecto 3D Hydra Lipgloss Kiko Milano",
+        imagen: "/imagenes/kiko-1-1.avif",
+        precioCop: 49900,
+        descripcion:
+          "Brillo de labios de efecto 3D con acabado emoliente y luminoso. Su textura hidratante aporta volumen óptico y un brillo intenso, para unos labios jugosos y cuidados.\n\nDisponible en muchos tonos: elige tu color en los círculos de arriba y desliza las fotos con las flechas para ver cada acabado.",
+        variantes: [
+          { sufijoNombre: "17 Pearly Mauve", color: "#C0405A", imagen: "/imagenes/kiko-1-1.avif", imagenes: ["/imagenes/kiko-1-1.avif", "/imagenes/kiko-1-2.avif", "/imagenes/kiko-1-3.avif", "/imagenes/kiko-1-4.avif", "/imagenes/kiko-1-5.avif", "/imagenes/kiko-1-6.avif"] },
+          { sufijoNombre: "31 Pearly Shell", color: "#E8A9A2", imagen: "/imagenes/kiko-2-1.avif", imagenes: ["/imagenes/kiko-2-1.avif", "/imagenes/kiko-2-2.avif", "/imagenes/kiko-2-3.avif", "/imagenes/kiko-2-4.avif", "/imagenes/kiko-2-5.jpg", "/imagenes/kiko-2-6.avif"] },
+          { sufijoNombre: "32 Pearly Natural Rose", color: "#C77B78", imagen: "/imagenes/kiko-3-1.avif", imagenes: ["/imagenes/kiko-3-1.avif", "/imagenes/kiko-3-2.avif", "/imagenes/kiko-3-3.avif", "/imagenes/kiko-3-4.avif", "/imagenes/kiko-3-5.avif"] },
+          { sufijoNombre: "35 Pearly Warm Mauve", color: "#B85C5C", imagen: "/imagenes/kiko-4-1.avif", imagenes: ["/imagenes/kiko-4-1.avif", "/imagenes/kiko-4-2.avif", "/imagenes/kiko-4-3.avif", "/imagenes/kiko-4-4.avif", "/imagenes/kiko-4-5.avif"] },
+          { sufijoNombre: "11 Golden Red", color: "#D01F2E", imagen: "/imagenes/kiko-5-1.avif", imagenes: ["/imagenes/kiko-5-1.avif", "/imagenes/kiko-5-2.avif", "/imagenes/kiko-5-3.avif", "/imagenes/kiko-5-4.avif", "/imagenes/kiko-5-5.avif", "/imagenes/kiko-5-6.avif"] },
+          { sufijoNombre: "22 Sparkling Red Garnet", color: "#9B4A44", imagen: "/imagenes/kiko-6-1.avif", imagenes: ["/imagenes/kiko-6-1.avif", "/imagenes/kiko-6-2.avif", "/imagenes/kiko-6-3.avif", "/imagenes/kiko-6-4.avif", "/imagenes/kiko-6-5.avif", "/imagenes/kiko-6-6.avif"] },
+          { sufijoNombre: "23 Magenta", color: "#B01133", imagen: "/imagenes/kiko-7-1.jpg", imagenes: ["/imagenes/kiko-7-1.jpg", "/imagenes/kiko-7-2.avif", "/imagenes/kiko-7-3.avif", "/imagenes/kiko-7-4.avif", "/imagenes/kiko-7-5.jpg", "/imagenes/kiko-7-6.jpg"] },
+          { sufijoNombre: "27 Pearly Lavender", color: "#F0C9D0", imagen: "/imagenes/kiko-8-1.avif", imagenes: ["/imagenes/kiko-8-1.avif", "/imagenes/kiko-8-2.avif", "/imagenes/kiko-8-3.avif", "/imagenes/kiko-8-4.avif", "/imagenes/kiko-8-5.avif", "/imagenes/kiko-8-6.avif"] },
+          { sufijoNombre: "01 Clear", color: "#F2EEF0", imagen: "/imagenes/kiko-9-1.avif", imagenes: ["/imagenes/kiko-9-1.avif", "/imagenes/kiko-9-2.avif", "/imagenes/kiko-9-3.avif", "/imagenes/kiko-9-4.avif", "/imagenes/kiko-9-5.avif"] },
+          { sufijoNombre: "04 Pearly Peach Rose", color: "#E79A94", imagen: "/imagenes/kiko-10-1.avif", imagenes: ["/imagenes/kiko-10-1.avif", "/imagenes/kiko-10-2.avif", "/imagenes/kiko-10-3.avif", "/imagenes/kiko-10-4.avif", "/imagenes/kiko-10-5.avif"] },
+          { sufijoNombre: "05 Pearly Pink", color: "#F2A8B0", imagen: "/imagenes/kiko-11-1.avif", imagenes: ["/imagenes/kiko-11-1.avif", "/imagenes/kiko-11-2.avif", "/imagenes/kiko-11-3.avif", "/imagenes/kiko-11-4.avif", "/imagenes/kiko-11-5.avif"] },
+          { sufijoNombre: "07 Pink Magnolia", color: "#EF8FA0", imagen: "/imagenes/kiko-12-1.avif", imagenes: ["/imagenes/kiko-12-1.avif", "/imagenes/kiko-12-2.avif", "/imagenes/kiko-12-3.jpg", "/imagenes/kiko-12-4.avif", "/imagenes/kiko-12-5.avif"] },
+          { sufijoNombre: "12 Pearly Amaryllis Red", color: "#E85C6A", imagen: "/imagenes/kiko-13-1.avif", imagenes: ["/imagenes/kiko-13-1.avif", "/imagenes/kiko-13-2.avif", "/imagenes/kiko-13-3.avif", "/imagenes/kiko-13-4.avif", "/imagenes/kiko-13-5.avif"] },
+          { sufijoNombre: "18 Golden Sparkle", color: "#C96B4E", imagen: "/imagenes/kiko-14-1.avif", imagenes: ["/imagenes/kiko-14-1.avif", "/imagenes/kiko-14-2.avif", "/imagenes/kiko-14-3.avif", "/imagenes/kiko-14-4.avif", "/imagenes/kiko-14-5.avif"] },
+          { sufijoNombre: "19 Cream Cashmere", color: "#C77E6E", imagen: "/imagenes/kiko-15-1.avif", imagenes: ["/imagenes/kiko-15-1.avif", "/imagenes/kiko-15-2.avif", "/imagenes/kiko-15-3.avif", "/imagenes/kiko-15-4.avif", "/imagenes/kiko-15-5.avif"] },
+          { sufijoNombre: "20 Chestnut", color: "#F0A98F", imagen: "/imagenes/kiko-16-1.avif", imagenes: ["/imagenes/kiko-16-1.avif", "/imagenes/kiko-16-2.avif", "/imagenes/kiko-16-3.avif", "/imagenes/kiko-16-4.avif", "/imagenes/kiko-16-5.jpg"] },
+          { sufijoNombre: "26 Sparkling Hibiscus Pink", color: "#EF95A8", imagen: "/imagenes/kiko-17-1.avif", imagenes: ["/imagenes/kiko-17-1.avif", "/imagenes/kiko-17-2.avif", "/imagenes/kiko-17-3.avif", "/imagenes/kiko-17-4.avif", "/imagenes/kiko-17-5.avif"] },
+          { sufijoNombre: "21 Brun Rose", color: "#B57B7B", imagen: "/imagenes/kiko-18-1.avif", imagenes: ["/imagenes/kiko-18-1.avif", "/imagenes/kiko-18-2.avif", "/imagenes/kiko-18-3.avif", "/imagenes/kiko-18-4.avif"] },
+          { sufijoNombre: "10 Sparkling Strawberry", color: "#E23D5C", imagen: "/imagenes/kiko-19-1.avif", imagenes: ["/imagenes/kiko-19-1.avif", "/imagenes/kiko-19-2.avif", "/imagenes/kiko-19-3.avif", "/imagenes/kiko-19-4.avif", "/imagenes/kiko-19-5.avif", "/imagenes/kiko-19-6.avif"] },
+        ],
+      },
+      {
+        id: "maq-piloto-2b",
         nombre: "Producto de maquillaje 2",
         imagen: "",
         precioCop: 39900,

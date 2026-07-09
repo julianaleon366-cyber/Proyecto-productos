@@ -72,7 +72,7 @@ export default function TarjetaProducto({ producto }: { producto: Producto }) {
             Imagen del producto
           </div>
         ) : (
-          <div className="h-full w-full bg-white p-4">
+          <div className="h-full w-full bg-[#ffffff] p-4">
             <Image
               src={producto.imagen}
               alt={producto.nombre}
@@ -91,6 +91,24 @@ export default function TarjetaProducto({ producto }: { producto: Producto }) {
             {producto.nombre}
           </h3>
         </Link>
+
+        {/* Tonos disponibles: círculos pequeños. Reservamos siempre la misma
+            altura (con o sin variantes) para que todas las tarjetas midan igual. */}
+        <div className="mt-3 flex h-4 items-center gap-1.5">
+          {producto.variantes?.slice(0, 5).map((v, i) => (
+            <span
+              key={i}
+              className="h-4 w-4 rounded-full ring-1 ring-white/40"
+              style={{ backgroundColor: v.color }}
+              aria-hidden="true"
+            />
+          ))}
+          {producto.variantes && producto.variantes.length > 5 && (
+            <span className="text-xs font-medium text-white/70">
+              +{producto.variantes.length - 5}
+            </span>
+          )}
+        </div>
 
         {/* mt-auto empuja precio + botón al fondo de la tarjeta */}
         <p className="mt-auto pt-3 text-lg font-semibold text-white">
