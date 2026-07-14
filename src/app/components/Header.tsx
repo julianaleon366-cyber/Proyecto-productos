@@ -39,15 +39,19 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* Centro: logo */}
-        <a href="/" className="flex items-center" aria-label="KAPRICHO">
+        {/* Centro: logo (posición absoluta para crecer sin mover el menú) */}
+        <a
+          href="/"
+          className="absolute left-1/2 top-3 -translate-x-1/2"
+          aria-label="KAPRICHO"
+        >
           <Image
             src="/imagenes/logo-header.png"
             alt="KAPRICHO"
             width={931}
             height={650}
             priority
-            className="h-16 w-auto sm:h-20"
+            className="h-24 w-auto sm:h-28"
           />
         </a>
 

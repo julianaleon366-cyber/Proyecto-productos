@@ -194,18 +194,19 @@ export default function Home() {
 
       {/* Pie: banda "bajo pedido" + redes, todo en un bloque negro de borde a borde */}
       <footer className="mt-8 w-full bg-zinc-900 text-white">
-        {/* Sección superior: ropa/accesorios bajo pedido */}
+        {/* Sección superior: todo bajo pedido */}
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 py-16 text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-            También bajo pedido
+            Personal shopper · Todo bajo pedido
           </span>
           <h2 className="text-2xl font-semibold leading-snug tracking-tight sm:text-3xl">
-            ¿Buscas ropa, zapatos o accesorios de España?
-            <br className="hidden sm:block" /> También te los conseguimos
+            ¿Buscas algo de España?
+            <br className="hidden sm:block" /> Nosotros te lo conseguimos
           </h2>
           <p className="max-w-xl text-sm leading-6 text-zinc-400">
-            Ropa, calzado y accesorios de tiendas españolas como Zara, Mango o
-            Stradivarius. Nos envías lo que quieres y te lo conseguimos.
+            Skincare, maquillaje, cuidado capilar, suplementos, ropa y accesorios
+            de marcas europeas. Dinos lo que quieres y te lo enviamos directo a
+            Colombia.
           </p>
           <a
             href="/como-funciona"
@@ -271,6 +272,27 @@ export default function Home() {
               </svg>
             </a>
           </div>
+
+          {/* Email de contacto */}
+          <a
+            href="mailto:kaprichopersonalshopper@gmail.com"
+            className="flex items-center gap-2 text-sm text-zinc-300 transition-colors hover:text-white"
+          >
+            <svg
+              className="h-4 w-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 6 10 7L22 6" />
+            </svg>
+            kaprichopersonalshopper@gmail.com
+          </a>
 
           <p className="text-center text-sm text-zinc-500">
             © {NOMBRE_MARCA} · Productos originales importados de España
