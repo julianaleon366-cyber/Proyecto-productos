@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 // Categorías del menú.
@@ -39,17 +40,15 @@ export default function Header() {
         </button>
 
         {/* Centro: logo */}
-        <a
-          href="/"
-          className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2.5"
-          aria-label="KAPRICHO"
-        >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-base font-bold text-white">
-            K
-          </span>
-          <span className="text-lg font-bold tracking-tight text-zinc-900 sm:text-xl">
-            KAPRICHO
-          </span>
+        <a href="/" className="flex items-center" aria-label="KAPRICHO">
+          <Image
+            src="/imagenes/logo-header.png"
+            alt="KAPRICHO"
+            width={931}
+            height={650}
+            priority
+            className="h-16 w-auto sm:h-20"
+          />
         </a>
 
         {/* Derecha: espacio para equilibrar el logo centrado */}
