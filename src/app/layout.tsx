@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { BolsaProvider } from "./lib/BolsaContext";
-import { FavoritosProvider } from "./lib/FavoritosContext";
 import BotonWhatsApp from "./components/BotonWhatsApp";
 
 const geistSans = Geist({
@@ -16,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KAPRICHO — Dermocosmética de España a Colombia",
+  title: "KAPRICHO | Personal Shopper",
   description:
-    "Personal shopper internacional. Marcas como La Roche-Posay, Eucerin, Sesderma y The Ordinary, traídas desde España a Colombia.",
+    "Tu personal shopper en España. Skincare, maquillaje, cuidado capilar, suplementos, moda y accesorios de marcas europeas, enviados directamente a Colombia.",
 };
 
 export default function RootLayout({
@@ -32,12 +30,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-zinc-900">
-        <BolsaProvider>
-          <FavoritosProvider>
-            {children}
-            <BotonWhatsApp />
-          </FavoritosProvider>
-        </BolsaProvider>
+        {children}
+        <BotonWhatsApp />
       </body>
     </html>
   );

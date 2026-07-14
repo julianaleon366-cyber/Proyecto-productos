@@ -1,30 +1,30 @@
 import BannerInformativo from "../components/BannerInformativo";
 import Header from "../components/Header";
-import { mensajeModaBajoPedido, urlWhatsApp } from "../lib/whatsapp";
+import { mensajePedidoEspecial, urlWhatsApp } from "../lib/whatsapp";
 
 const PASOS = [
   {
     numero: "1",
-    titulo: "Compra virtual en España",
+    titulo: "Dinos qué quieres",
     texto:
-      "Busca en las apps oficiales de tiendas españolas como Zara, Mango, Stradivarius, etc., la prenda, el zapato o el accesorio que quieres, en tu talla.",
+      "Cuéntanos qué producto o prenda buscas. Para skincare, maquillaje, capilar o suplementos, solo dinos el nombre. Para ropa y accesorios, mándanos una captura o el enlace, con tu talla y color.",
   },
   {
     numero: "2",
-    titulo: "Captura y envía",
+    titulo: "Te cotizamos",
     texto:
-      "Toma una captura de pantalla donde se vea la referencia, la talla y el color, o copia el enlace del producto.",
+      "Confirmamos la disponibilidad y te damos el precio final estimado en pesos colombianos, con el envío incluido. Sin compromiso.",
   },
   {
     numero: "3",
-    titulo: "Cotización en 5 minutos",
+    titulo: "Lo compramos y te lo enviamos",
     texto:
-      "Nos lo mandas por WhatsApp y te damos el precio final estimado en pesos colombianos, con envío incluido.",
+      "Si te encaja, aseguras tu pedido con un anticipo (Nequi o Bancolombia). Compramos tu producto original en España y te lo enviamos directamente a Colombia.",
   },
 ];
 
-export default function PaginaModa() {
-  const enlaceWhatsApp = urlWhatsApp(mensajeModaBajoPedido());
+export default function PaginaComoFunciona() {
+  const enlaceWhatsApp = urlWhatsApp(mensajePedidoEspecial());
 
   return (
     <div className="flex flex-1 flex-col bg-white text-zinc-900">
@@ -35,14 +35,14 @@ export default function PaginaModa() {
         {/* Encabezado */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-            Moda · Zapatos · Accesorios
+            Cómo funciona
           </span>
           <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Ropa, zapatos y accesorios de España, bajo pedido
+            Pedir es muy fácil
           </h1>
           <p className="mt-4 text-base leading-7 text-zinc-600">
-            No tenemos prendas en stock: te conseguimos exactamente lo que
-            quieres de las tiendas españolas. Así de fácil:
+            Somos tu personal shopper en España: te conseguimos lo que quieras y
+            te lo enviamos a Colombia. Así de sencillo:
           </p>
         </div>
 
@@ -67,14 +67,14 @@ export default function PaginaModa() {
         </div>
 
         {/* Botón principal */}
-        <div className="mt-14 flex flex-col items-center">
+        <div className="mt-14 flex justify-center">
           <a
             href={enlaceWhatsApp}
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-14 items-center justify-center rounded-full bg-zinc-900 px-10 text-base font-semibold text-white transition-colors hover:bg-zinc-700"
           >
-            Enviar mi captura por WhatsApp
+            Escríbenos por WhatsApp
           </a>
         </div>
       </main>

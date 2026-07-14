@@ -3,8 +3,8 @@ import Header from "./components/Header";
 import CarruselProductos, {
   type ProductoDestacado,
 } from "./components/CarruselProductos";
-import SeccionCategoria from "./components/SeccionCategoria";
-import { CATEGORIAS_CATALOGO } from "./lib/productos";
+import SeccionCollage from "./components/SeccionCollage";
+import { SECCIONES } from "./lib/secciones";
 import { mensajePedidoEspecial, urlWhatsApp } from "./lib/whatsapp";
 
 // Carrusel destacado (bloque izquierdo): categorías intercaladas para reflejar
@@ -26,7 +26,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     descripcion:
       "También te los conseguimos bajo pedido. Elige en Zara, Mango o Stradivarius y nosotros te lo traemos.",
     imagen: "/imagenes/1_moda.png",
-    href: "/moda",
+    href: "/como-funciona",
     textoBoton: "Cómo funciona",
   },
   {
@@ -43,7 +43,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     nombre: "Cuidado capilar profesional",
     descripcion:
       "Champús, mascarillas y tratamientos para nutrir y reparar tu cabello.",
-    imagen: "/imagenes/1_cabello.png",
+    imagen: "/imagenes/3_cabello.png",
     href: "#capilar",
     textoBoton: "Ver capilar",
   },
@@ -71,7 +71,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
     descripcion:
       "Complementos de tiendas españolas, bajo pedido. Envíanos lo que quieres y te lo cotizamos.",
     imagen: "/imagenes/3_moda.png",
-    href: "/moda",
+    href: "/como-funciona",
     textoBoton: "Cómo funciona",
   },
   {
@@ -184,14 +184,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Catálogo de productos, agrupado por categorías */}
-      <div id="catalogo" className="w-full px-6 py-16">
-        {CATEGORIAS_CATALOGO.filter((cat) => cat.productos.length > 0).map(
-          (categoria) => (
-            <SeccionCategoria key={categoria.id} categoria={categoria} />
-          )
-        )}
-      </div>
+      {/* Secciones tipo escaparate: collage + botón WhatsApp por categoría */}
+      {SECCIONES.map((seccion, i) => (
+        <SeccionCollage
+          key={seccion.id}
+          seccion={{ ...seccion, fondoGris: i % 2 === 1 }}
+        />
+      ))}
 
       {/* Pie: banda "bajo pedido" + redes, todo en un bloque negro de borde a borde */}
       <footer className="mt-8 w-full bg-zinc-900 text-white">
@@ -209,7 +208,7 @@ export default function Home() {
             Stradivarius. Nos envías lo que quieres y te lo conseguimos.
           </p>
           <a
-            href="/moda"
+            href="/como-funciona"
             className="mt-2 flex h-12 items-center justify-center rounded-full bg-white px-8 text-sm font-semibold text-zinc-900 transition-colors hover:bg-zinc-200"
           >
             Ver cómo funciona
