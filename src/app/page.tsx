@@ -184,6 +184,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Título de las categorías */}
+      <section className="w-full px-6 pt-16 pb-4 text-center">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+          Nuestras categorías
+        </span>
+        <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+          Descubre lo que podemos traerte desde España
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-zinc-600">
+          Skincare, maquillaje, cuidado capilar, suplementos, ropa y accesorios
+          de marcas europeas. Elige una categoría o pídenos directamente lo que
+          buscas.
+        </p>
+      </section>
+
       {/* Secciones tipo escaparate: collage + botón WhatsApp por categoría */}
       {SECCIONES.map((seccion, i) => (
         <SeccionCollage
