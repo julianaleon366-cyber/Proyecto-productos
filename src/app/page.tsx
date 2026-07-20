@@ -239,7 +239,9 @@ export default function Home() {
           {/* Redes sociales — ⚠️ pon aquí los enlaces reales cuando tengáis las cuentas */}
           <div className="flex items-center gap-3">
             <a
-              href="#"
+              href="https://instagram.com/kapricho.personalshopper"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
             >
@@ -259,7 +261,9 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://facebook.com/kapricho.personalshopper"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
             >
@@ -273,7 +277,9 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://tiktok.com/@kapricho.personalshopper"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="TikTok"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
             >

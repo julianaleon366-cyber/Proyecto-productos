@@ -52,3 +52,8 @@ export function mensajePedidoEspecial() {
 export function mensajeModaBajoPedido() {
   return "¡Hola KAPRICHO! Me interesa una prenda/accesorio de España. Aquí va la captura o el link, la talla y el color:";
 }
+
+// Mensaje para reservar una sesión de compra en directo con el personal shopper.
+export function mensajeCompraEnDirecto() {
+  return "¡Hola KAPRICHO! Quiero reservar una sesión de compra en directo con mi personal shopper. ¿Cuándo tenéis disponibilidad?";
+}

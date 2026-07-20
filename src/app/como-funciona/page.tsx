@@ -19,7 +19,7 @@ const PASOS = [
     numero: "3",
     titulo: "Lo compramos y te lo enviamos",
     texto:
-      "Si te encaja, aseguras tu pedido con un anticipo (Nequi o Bancolombia). Compramos tu producto original en España y te lo enviamos directamente a Colombia.",
+      "Si te encaja, aseguras tu pedido con un anticipo (Nu o Bancolombia). Compramos tu producto original en España y te lo enviamos directamente a Colombia.",
   },
 ];
 

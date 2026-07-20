@@ -38,6 +38,29 @@ section[id] {
   scroll-margin-top: 1.5rem;
 }
 
+/* Entrada de la burbuja de "compra en directo". */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Flotación suave de la burbujita (tipo Skype). */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* Botón "borrar" (la X) que el navegador añade en los inputs type="search".
    Lo pintamos de blanco para que combine con la barra oscura del buscador. */
 input[type="search"]::-webkit-search-cancel-button {
