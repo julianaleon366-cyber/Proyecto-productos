@@ -14,8 +14,9 @@ export type ProductoDestacado = {
   esMarcador?: boolean;
 };
 
-const INTERVALO_MS = 5000;
 const TRANSICION_MS = 700;
+// Avance automático lento: cambia de diapositiva cada 6 segundos.
+const INTERVALO_MS = 6000;
 // Distancia mínima (px) de arrastre con el dedo/ratón para contar como "deslizar".
 const UMBRAL_SWIPE = 50;
 
@@ -75,7 +76,7 @@ export default function CarruselProductos({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [total]);
 
-  // Paso automático: corre siempre (salvo que la pestaña esté oculta).
+  // Avance automático lento (se pausa cuando la pestaña está oculta).
   useEffect(() => {
     if (total <= 1) return;
 
@@ -205,6 +206,50 @@ export default function CarruselProductos({
           );
         })}
       </div>
+
+      {/* Flechas de navegación */}
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={retroceder}
+            aria-label="Anterior"
+            className="absolute left-1.5 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-zinc-900/40 text-white shadow-md backdrop-blur transition-colors hover:bg-zinc-900/60 sm:left-2.5 sm:h-8 sm:w-8"
+          >
+            <svg
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={avanzar}
+            aria-label="Siguiente"
+            className="absolute right-1.5 top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-zinc-900/40 text-white shadow-md backdrop-blur transition-colors hover:bg-zinc-900/60 sm:right-2.5 sm:h-8 sm:w-8"
+          >
+            <svg
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </>
+      )}
     </div>
   );
 }

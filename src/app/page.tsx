@@ -13,7 +13,7 @@ import { mensajePedidoEspecial, urlWhatsApp } from "./lib/whatsapp";
 const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   {
     // Skincare
-    nombre: "Skincare y cuidado de la piel",
+    nombre: "Skincare",
     descripcion:
       "Marcas de farmacia europea como La Roche-Posay, Bioderma o The Ordinary, a mejor precio.",
     imagen: "/imagenes/4_producto.png",
@@ -31,7 +31,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Maquillaje
-    nombre: "Bases, labiales y más maquillaje",
+    nombre: "Beauty",
     descripcion:
       "Descubre nuestra selección de maquillaje de marcas europeas a mejor precio.",
     imagen: "/imagenes/1_maquillaje.png",
@@ -40,7 +40,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Cabello
-    nombre: "Cuidado capilar profesional",
+    nombre: "Cuidado capilar",
     descripcion:
       "Champús, mascarillas y tratamientos para nutrir y reparar tu cabello.",
     imagen: "/imagenes/3_cabello.png",
@@ -49,7 +49,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Suplementos
-    nombre: "Suplementos y nutrición deportiva",
+    nombre: "Suplementos nutricionales",
     descripcion:
       "Creatina, colágeno y complementos de marcas europeas para tu rendimiento y bienestar.",
     imagen: "/imagenes/1_suplemento.png",
@@ -58,7 +58,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Skincare
-    nombre: "Serums, cremas y protección solar",
+    nombre: "Skincare",
     descripcion:
       "Rutina completa de cuidado facial: hidratación, tratamiento y protección diaria.",
     imagen: "/imagenes/2_producto.png",
@@ -76,7 +76,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Maquillaje
-    nombre: "Paletas de sombras y rostro",
+    nombre: "Beauty",
     descripcion:
       "Tonos y acabados profesionales para tu día a día o eventos especiales.",
     imagen: "/imagenes/2_maquillaje.png",
@@ -85,7 +85,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Cabello
-    nombre: "Sérums y tratamientos capilares",
+    nombre: "Cuidado capilar",
     descripcion:
       "Productos específicos para puntas, frizz y brillo, de marcas de farmacia europea.",
     imagen: "/imagenes/2_cabello.png",
@@ -94,7 +94,7 @@ const PRODUCTOS_DESTACADOS: ProductoDestacado[] = [
   },
   {
     // Suplementos
-    nombre: "Vitaminas y bienestar articular",
+    nombre: "Suplementos nutricionales",
     descripcion:
       "Magnesio, vitamina C, colágeno y más: complementos para tus articulaciones, energía y defensas.",
     imagen: "/imagenes/3_suplemento.png",
@@ -261,7 +261,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://facebook.com/kapricho.personalshopper"
+              href="https://www.facebook.com/profile.php?id=61592177938906"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"

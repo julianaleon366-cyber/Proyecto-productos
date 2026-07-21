@@ -6,9 +6,9 @@ import { useState } from "react";
 // Categorías del menú.
 const CATEGORIAS = [
   { nombre: "Skincare", href: "/#skincare" },
-  { nombre: "Maquillaje", href: "/#maquillaje" },
-  { nombre: "Capilar", href: "/#capilar" },
-  { nombre: "Suplementos", href: "/#suplementos" },
+  { nombre: "Beauty", href: "/#maquillaje" },
+  { nombre: "Cuidado capilar", href: "/#capilar" },
+  { nombre: "Suplementos nutricionales", href: "/#suplementos" },
   { nombre: "Ropa y Accesorios", href: "/#ropa" },
 ];
 

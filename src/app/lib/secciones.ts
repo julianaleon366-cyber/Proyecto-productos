@@ -16,7 +16,7 @@ export const SECCIONES: Seccion[] = [
   },
   {
     id: "maquillaje",
-    titulo: "Maquillaje",
+    titulo: "Beauty",
     descripcion:
       "Marcas europeas como KIKO Milano, NYX y más, a mejor precio. Bases, labiales, paletas, primers… dinos qué quieres y te lo traemos.",
     imagenes: [],
@@ -27,7 +27,7 @@ export const SECCIONES: Seccion[] = [
   },
   {
     id: "capilar",
-    titulo: "Capilar",
+    titulo: "Cuidado capilar",
     descripcion:
       "Cuidado capilar profesional: Olaplex, Kérastase, Moroccanoil y más. Champús, mascarillas y tratamientos para nutrir y reparar tu cabello.",
     imagenes: [],
@@ -38,7 +38,7 @@ export const SECCIONES: Seccion[] = [
   },
   {
     id: "suplementos",
-    titulo: "Suplementos",
+    titulo: "Suplementos nutricionales",
     descripcion:
       "Vitaminas y suplementos de marcas europeas: colágeno, magnesio, omega, creatina y más, para tu bienestar diario.",
     imagenes: [],
